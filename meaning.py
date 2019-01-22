@@ -13,8 +13,7 @@ def main():
         tweets = json.load(inFile)
         counter = 0
         headers = {
-            'content-type': 'application/x-www-form-urlencoded', 
-            'charset': 'utf-8'
+            'content-type': 'application/x-www-form-urlencoded'
         }
         errors = []
 
@@ -30,7 +29,7 @@ def main():
             else:
                 time.sleep(.2)
 
-            body = 'key=%s&lang=auto&ilang=en&txt=%s' % (key, tweet['text']) 
+            body = 'key=%s&lang=en&ilang=en&txt=%s' % (key, tweet['text']) 
             res = requests.request("POST", endpoint, data=body.encode('latin-1', 'replace'), headers=headers)
             data = json.loads(res.text)
 
