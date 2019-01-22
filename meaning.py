@@ -29,7 +29,7 @@ def main():
             else:
                 time.sleep(.2)
 
-            body = 'key=%s&lang=en&ilang=en&txt=%s' % (key, tweet['text']) 
+            body = 'key=%s&lang=es&ilang=en&txt=%s' % (key, tweet['text'])
             res = requests.request("POST", endpoint, data=body, headers=headers)
             data = json.loads(res.text)
 
@@ -40,8 +40,7 @@ def main():
                 tweet['confidence'] = (int) (data['confidence'])
                 tweet['polarity'] = getPolarityVal(data['score_tag'])
             else:
-                data['id'] = counter
-                data['text'] = tweet['text']
+                data['tweet'] = tweet
                 errors.append(data)
 
             counter += 1
