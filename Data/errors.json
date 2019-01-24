@@ -1,0 +1,56 @@
+[
+    {
+        "status": {
+            "code": "200",
+            "msg": "Missing required parameter(s): txt, url, doc",
+            "credits": "0",
+            "remaining_credits": "6407"
+        },
+        "tweet": {
+            "id": 2478,
+            "isBot": false,
+            "text": "      ",
+            "isAgreement": null,
+            "isSubjective": null,
+            "isIronic": null,
+            "confidence": null,
+            "polarity": null
+        }
+    },
+    {
+        "status": {
+            "code": "200",
+            "msg": "Missing required parameter(s): txt, url, doc",
+            "credits": "0",
+            "remaining_credits": "6407"
+        },
+        "tweet": {
+            "id": 2479,
+            "isBot": false,
+            "text": "",
+            "isAgreement": null,
+            "isSubjective": null,
+            "isIronic": null,
+            "confidence": null,
+            "polarity": null
+        }
+    },
+    {
+        "status": {
+            "code": "200",
+            "msg": "Missing required parameter(s): txt, url, doc",
+            "credits": "0",
+            "remaining_credits": "6370"
+        },
+        "tweet": {
+            "id": 2703,
+            "isBot": false,
+            "text": "     ",
+            "isAgreement": null,
+            "isSubjective": null,
+            "isIronic": null,
+            "confidence": null,
+            "polarity": null
+        }
+    }
+]

@@ -13,7 +13,7 @@ def main():
         tweets = json.load(inFile)
         counter = 0
         headers = {
-            'content-type': 'application/x-www-form-urlencoded'
+            'content-type': 'application/json'
         }
         errors = []
 
@@ -23,14 +23,21 @@ def main():
                 with open(outname, 'w') as outfile:
                     json.dump(tweets, outfile)
 
-            if 'confidence' in tweet.keys():
+            if 'confidence' in tweet.keys() and tweet['confidence'] is not None:
                 counter += 1 
                 continue
             else:
                 time.sleep(.2)
 
-            body = 'key=%s&lang=es&ilang=en&txt=%s' % (key, tweet['text'])
-            res = requests.request("POST", endpoint, data=body, headers=headers)
+            # body = 'key=%s&lang=en&ilang=en&txt="%s"' % (key, tweet['text'])
+            body = {
+                'key': key,
+                'lang': 'en',
+                'ilang': 'en',
+                'txt': tweet['text']
+            }
+
+            res = requests.request("POST", endpoint, data=json.dumps(body), headers=headers)
             data = json.loads(res.text)
 
             if data['status']['msg'] == 'OK':
@@ -40,6 +47,11 @@ def main():
                 tweet['confidence'] = (int) (data['confidence'])
                 tweet['polarity'] = getPolarityVal(data['score_tag'])
             else:
+                tweet['isAgreement'] = None
+                tweet['isSubjective'] = None
+                tweet['isIronic'] = None
+                tweet['confidence'] = None
+                tweet['polarity'] = None
                 data['tweet'] = tweet
                 errors.append(data)
 
