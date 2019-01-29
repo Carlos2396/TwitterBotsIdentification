@@ -1,4 +1,4 @@
-import csv, sys, requests, json, time
+import sys, requests, json, time
 
 endpoint = "https://api.meaningcloud.com/sentiment-2.1"
 key = "b8a6d3745e22b57811d6ffc7efef8ca9"
@@ -6,6 +6,7 @@ key = "b8a6d3745e22b57811d6ffc7efef8ca9"
 def main():
     if len(sys.argv) != 3:
         return
+        
     inname = sys.argv[1]
     outname = sys.argv[2]
 
@@ -29,7 +30,6 @@ def main():
             else:
                 time.sleep(.2)
 
-            # body = 'key=%s&lang=en&ilang=en&txt="%s"' % (key, tweet['text'])
             body = {
                 'key': key,
                 'lang': 'en',
