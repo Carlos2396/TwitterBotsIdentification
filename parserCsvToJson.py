@@ -1,7 +1,7 @@
 import csv, sys, requests, json
 
 def main():
-    if len(sys.argv) != 4:
+    if len(sys.argv) != 3:
         return
     in_name = sys.argv[1]
     out_name = sys.argv[2]
@@ -27,7 +27,7 @@ def main():
 
             counter += 1
         
-        with open(sys.argv[3], 'w') as errorFile:
+        with open('errors.csv', 'w') as errorFile:
             writer = csv.writer(errorFile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
 
             for data in failed:
