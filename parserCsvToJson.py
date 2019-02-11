@@ -10,18 +10,22 @@ def main():
         reader = csv.DictReader(read_file)
         success = []
         failed = []
+        counter = 1
 
         for row in reader:
             data = {}
-            data['id'] = row['Id']
+            data['id'] = counter
+            data['class'] = "Bot" if row['Class'] == 1 else "Human"
 
             try:
-                text = row['Tweet'].encode('latin-1', 'ignore').decode('latin-1')
+                text = row['Tweet'].encode('utf8', 'ignore').decode('utf8')
                 data['text'] = text
                 success.append(data)
             except UnicodeEncodeError as ex:
                 data['text'] = row['Tweet']
                 failed.append(data)
+
+            counter += 1
         
         with open('errors.csv', 'w') as errorFile:
             writer = csv.writer(errorFile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)

@@ -45,7 +45,7 @@ def main():
                 tweet['isSubjective'] = data['subjectivity'] == "SUBJECTIVE"
                 tweet['isIronic'] = data['irony'] == "IRONIC"
                 tweet['confidence'] = (int) (data['confidence'])
-                tweet['polarity'] = getPolarityVal(data['score_tag'])
+                tweet['polarity'] = data['score_tag']
             else:
                 tweet['isAgreement'] = None
                 tweet['isSubjective'] = None
@@ -64,18 +64,6 @@ def main():
             json.dump(errors, outfile)
 
             print(len(errors))
-
-def getPolarityVal(value):
-    switcher = {
-        'N+': -2,
-        'N': -1,
-        'NONE': 0,
-        'P': 1,
-        'P+': 2
-    }
-
-    return switcher.get(value, 0)
-    
 
 if __name__ == '__main__':
     main()

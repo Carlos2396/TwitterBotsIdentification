@@ -24,6 +24,7 @@ def main():
             count += 1
 
             if count % 100 == 0:
+                print(count)
                 with open(outname, 'w') as outfile:
                     json.dump(tweets, outfile)
         
