@@ -12,10 +12,17 @@ def main():
             return
 
         with open(csvName, 'w') as csvFile:
+            del tweets[0]["id"]
             writer = csv.DictWriter(csvFile, tweets[0].keys())
             writer.writeheader()
 
+            first = True
             for tweet in tweets:
+                if first:
+                    first = False
+                else:
+                    del tweet["id"]
+                tweet["text"] = "\"%s" % (tweet["text"])
                 writer.writerow(tweet)
 
 if __name__ == '__main__':
