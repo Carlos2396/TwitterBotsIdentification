@@ -15,7 +15,7 @@ def main():
         for row in reader:
             data = {}
             data['id'] = counter
-            data['class'] = "Bot" if row['Class'] == 1 else "Human"
+            data['class'] = "Bot" if (int)(row['Class']) == 1 else "Human"
 
             try:
                 text = row['Tweet'].encode('utf8', 'ignore').decode('utf8')
