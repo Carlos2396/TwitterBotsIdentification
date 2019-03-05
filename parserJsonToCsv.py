@@ -14,6 +14,9 @@ def main():
 
         with open(csvName, 'w') as csvFile:
             del tweets[0]["id"]
+            if "class" not in tweets[0]:
+                tweets[0]["class"] = "?"
+
             writer = csv.DictWriter(csvFile, tweets[0].keys())
             writer.writeheader()
 
@@ -23,6 +26,8 @@ def main():
                     first = False
                 else:
                     del tweet["id"]
+                    if "class" not in tweet:
+                        tweet["class"] = "?"
                 
                 tweet["text"] = "\"%s" % (tweet["text"].encode('utf8', 'ignore'))
                 writer.writerow(tweet)
