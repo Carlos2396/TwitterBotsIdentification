@@ -3,6 +3,7 @@ import csv, sys, json
 def main():
     if len(sys.argv) != 3:
         return
+        
     jsonName = sys.argv[1]
     csvName = sys.argv[2]
 
@@ -22,7 +23,8 @@ def main():
                     first = False
                 else:
                     del tweet["id"]
-                tweet["text"] = "\"%s" % (tweet["text"])
+                
+                tweet["text"] = "\"%s" % (tweet["text"].encode('utf8', 'ignore'))
                 writer.writerow(tweet)
 
 if __name__ == '__main__':
