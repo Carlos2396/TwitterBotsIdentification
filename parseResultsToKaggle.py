@@ -1,13 +1,12 @@
 import csv, sys
 
 def main():
-    if len(sys.argv) != 3:
+    if len(sys.argv) != 2:
         return
 
     in_name = sys.argv[1]
-    out_name = sys.argv[2]
 
-    with open(in_name, mode='r') as read_file:
+    with open(in_name, mode='rw') as read_file:
         reader = csv.DictReader(read_file)
         tweets = []
 
@@ -17,7 +16,7 @@ def main():
             data['Expected'] = 1 if (row['predicted']) == "1:Bot" else 0
             tweets.append(data)
 
-        with open(out_name, 'w') as csvFile:
+        with open(in_name, 'w') as csvFile:
             writer = csv.DictWriter(csvFile, tweets[0].keys())
             writer.writeheader()
 

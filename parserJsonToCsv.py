@@ -13,21 +13,17 @@ def main():
             return
 
         with open(csvName, 'w') as csvFile:
-            del tweets[0]["id"]
-            if "class" not in tweets[0]:
-                tweets[0]["class"] = "?"
+            keys = set(tweets[0].keys()) - set(['class', 'id'])
+            keys = sorted(keys)
+            keys.append('class')
 
-            writer = csv.DictWriter(csvFile, tweets[0].keys())
+            writer = csv.DictWriter(csvFile, keys)
             writer.writeheader()
 
-            first = True
             for tweet in tweets:
-                if first:
-                    first = False
-                else:
-                    del tweet["id"]
-                    if "class" not in tweet:
-                        tweet["class"] = "?"
+                del tweet['id']
+                if "class" not in tweet:
+                    tweet["class"] = "?"
                 
                 tweet["text"] = "\"%s" % (tweet["text"].encode('utf8', 'ignore'))
                 writer.writerow(tweet)
