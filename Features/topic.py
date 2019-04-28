@@ -15,7 +15,7 @@ def main():
 
         for tweet in tweets:
             result = indicoio.text_tags(tweet['text'])
-            tweet['topic'] = getTopic(result)
+            tweet.update(result)
             count += 1
 
             if count % 100 == 0:
@@ -25,15 +25,6 @@ def main():
         
         with open(outname, 'w') as outfile:
             json.dump(tweets, outfile)
-            
-def getTopic(topics):
-    max = 0
-    for topic in topics.keys():
-        if topics[topic] > max:
-            max = topics[topic]
-            top = topic
-
-    return top
 
 if __name__ == '__main__':
     main()
