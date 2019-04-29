@@ -13,9 +13,8 @@ def main():
             oldT = json.load(inFile)
             newT = json.load(inFile2)
             
-            for f in oldT:
-                for s in newT: 
-                    f.update(s)
+            for i in range(1500):
+                oldT[i].update(newT[i])
 
             with open(outname, 'w') as outfile:
                 json.dump(oldT, outfile)
